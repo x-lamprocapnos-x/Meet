@@ -47,10 +47,10 @@
         const resultElement = document.getElementById("result");
         const resultLink = document.getElementById("authURL");
         // step 1 below
-        const getAuthURL = "https://ays81f3tre.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
+        const getAuthUrl = "https://ays81f3tre.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
         getCodeElement.onclick = function () {
-            fetch(getAuthURL)
+            fetch(getAuthUrl)
                 .then(function (response) {
                     return response.json();
                 })

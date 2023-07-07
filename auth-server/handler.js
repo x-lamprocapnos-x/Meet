@@ -15,7 +15,7 @@ const credentials = {
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://x-lamprocapnos-x.github.io/meet"],
+  redirect_uris: ["https://x-lamprocapnos-x.github.io/meet/"],
   javascript_origins: ["https://x-lamprocapnos-x.github.io", "http://localhost:3000"],
 };
 
@@ -28,9 +28,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 module.exports.getAuthUrl = async () => {
 
-  console.log("authUrl");
-
-  const authUrl = oAuth2Client.generateAuthUrl({
+    const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
   });
@@ -42,14 +40,12 @@ module.exports.getAuthUrl = async () => {
       "Access-Control-Allow-Credentials": true,
     },
     body: JSON.stringify({
-      authUrl: authUrl,
+      authUrl,
     }),
   };
 };
 
 module.exports.getAccessToken = async (event) => {
-
-  console.log("getAccessToken");
 
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
@@ -65,10 +61,10 @@ module.exports.getAccessToken = async (event) => {
       if (err) {
         return reject(err);
       }
-      return resolve(token);
+      return resolve(token); //response
     });
   })
-    .then((token) => {
+    .then((token) => { //results
       // Respond with OAuth token 
       return {
         statusCode: 200,

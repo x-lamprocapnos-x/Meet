@@ -1,6 +1,6 @@
-# This file is the main config file for your service.
-
 service: auth-server
+
+frameworkVersion: "3"
 
 provider:
   name: aws
