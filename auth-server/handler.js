@@ -1,12 +1,12 @@
 const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
-
-/* SCOPES allows you to set access levels; this is set to read only for now because you don't have access rights to update the calendar yourself. */
-const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+const SCOPES = ["https://www.googleapis.com/auth/calendar.event.public.readonly"];
+const OAuth2 = google.auth.OAuth2
+const { client_secret, client_id, calendar_id } = process.env;
+const redirect_uris = ["https://x-lamprocapnos-x.github.io/meet/"];
 
 /* Credentials are values required to get access to your calendar. If you see “process.env” this means the value is in the “config.json” file. */
-
+/*
 const credentials = {
   client_id: process.env.CLIENT_ID,
   project_id: process.env.PROJECT_ID,
@@ -15,11 +15,11 @@ const credentials = {
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://x-lamprocapnos-x.github.io/meet/"],
+  redirect_uris: [],
   javascript_origins: ["https://x-lamprocapnos-x.github.io", "http://localhost:3000"],
 };
+*/
 
-const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
 const oAuth2Client = new google.auth.OAuth2(
   client_id,
   client_secret,
@@ -46,25 +46,19 @@ module.exports.getAuthUrl = async () => {
 };
 
 module.exports.getAccessToken = async (event) => {
-
-  const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0]
-  );
   // Decode authorization code extracted from the URL query
   const code = decodeURIComponent(`${event.pathParameters.code}`);
 
   return new Promise((resolve, reject) => {
 
-    oAuth2Client.getToken(code, (err, token) => {
+    oAuth2Client.getToken(code, (err, response) => {
       if (err) {
         return reject(err);
       }
-      return resolve(token); //response
+      return resolve(response); //response
     });
   })
-    .then((token) => { //results
+    .then((results) => { //results
       // Respond with OAuth token 
       return {
         statusCode: 200,
@@ -72,7 +66,7 @@ module.exports.getAccessToken = async (event) => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": true,
         },
-        body: JSON.stringify(token),
+        body: JSON.stringify(results),
       };
     })
     .catch((err) => {
