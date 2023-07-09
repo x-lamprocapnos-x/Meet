@@ -25,7 +25,7 @@
         <h1>OAuth2 Test</h1>
         <h4><b>Step 1:</b> Get the Auth URL</h4>
         <p>Click the button below to get your auth url.</p>
-        <button id="getCode">Get OAuth URL</button>
+        <button id="getAuthURLButton">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorize</a>
         <h4>Step 2: Get your code and exchange for an access token</h4>
@@ -47,7 +47,7 @@
         const resultElement = document.getElementById("result");
         const resultLink = document.getElementById("authURL");
         // step 1 below
-        const getAuthUrl = "https://ays81f3tre.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
+        const getAuthUrl = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
         getCodeElement.onclick = function () {
             fetch(getAuthUrl)
@@ -69,7 +69,7 @@
         const codeValue = document.getElementById("code");
         const getAccessToken = document.getElementById("getToken");
         const accessTokenElement = document.getElementById("accessToken");
-        const getToken = "https://ays81f3tre.execute-api.us-east-2.amazonaws.com/dev/api/token";
+        const getToken = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/token";
 
         getAccessToken.onclick = function () {
             let code = codeValue.value;
