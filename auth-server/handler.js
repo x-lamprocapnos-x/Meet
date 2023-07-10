@@ -1,8 +1,9 @@
+
 const { google } = require("googleapis");
 const calendar = google.calendar("v3");
-const SCOPES = ["https://www.googleapis.com/auth/calendar.event.public.readonly"];
+const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 const OAuth2 = google.auth.OAuth2
-const { client_secret, client_id, calendar_id } = process.env;
+const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
 const redirect_uris = ["https://x-lamprocapnos-x.github.io/meet/"];
 
 /* Credentials are values required to get access to your calendar. If you see “process.env” this means the value is in the “config.json” file. */
@@ -21,8 +22,8 @@ const credentials = {
 */
 
 const oAuth2Client = new google.auth.OAuth2(
-  client_id,
-  client_secret,
+  CLIENT_ID,
+  CLIENT_SECRET,
   redirect_uris[0]
 );
 
