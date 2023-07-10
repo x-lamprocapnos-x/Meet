@@ -26,7 +26,7 @@
         <!-- STEP 1 BELOW -->
         <h4><b>Step 1:</b> Get the Auth URL</h4>
         <p>Click the button below to get your auth url.</p>
-        <button id="getAuthURLButton">Get OAuth URL</button>
+        <button id="getAuthUrlButton">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorize</a>
         <!-- STEP 2 BELOW -->
@@ -52,7 +52,7 @@
         // ---------------------- step 1 below
         const getAuthUrl = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-        getAuthUrlButton.onclick = function () {
+        getAuthUrlButton.onclick = function() {
             fetch(getAuthUrl)
                 .then(function (response) {
                     return response.json();
