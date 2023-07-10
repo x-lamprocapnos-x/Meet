@@ -20,10 +20,10 @@ const credentials = {
   javascript_origins: ["https://x-lamprocapnos-x.github.io", "http://localhost:3000"],
 };
 
-const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID, redirect_uris} = credentials;
+const { client_id, client_secret, calendar_id, redirect_uris} = credentials;
 const oAuth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
+  client_id,
+  client_secret,
   redirect_uris[0]
 );
 
