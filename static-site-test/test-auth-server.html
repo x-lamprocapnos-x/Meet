@@ -23,18 +23,21 @@
 
     <main id="container">
         <h1>OAuth2 Test</h1>
+        <!-- STEP 1 BELOW -->
         <h4><b>Step 1:</b> Get the Auth URL</h4>
         <p>Click the button below to get your auth url.</p>
         <button id="getAuthURLButton">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorize</a>
+        <!-- STEP 2 BELOW -->
         <h4>Step 2: Get your code and exchange for an access token</h4>
         <p>
             After you’re redirected back to your Meet app on GitHub, copy the code
             from the URI.
         </p>
         <br />
-        <label>Code input
+        <label>
+            Code input
             <input id="code" type="text" value="" />
         </label>
         <button id="getToken">Get Token</button>
@@ -43,13 +46,13 @@
     </main>
 
     <script type="text/javascript">
-        const getCodeElement = document.getElementById("getCode");
+        const getAuthUrlButton = document.getElementById("getAuthUrlButton")
         const resultElement = document.getElementById("result");
         const resultLink = document.getElementById("authURL");
-        // step 1 below
+        // ---------------------- step 1 below
         const getAuthUrl = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-        getCodeElement.onclick = function () {
+        getAuthUrlButton.onclick = function () {
             fetch(getAuthUrl)
                 .then(function (response) {
                     return response.json();
@@ -63,8 +66,7 @@
                     resultLink.href = authUrl;
                 });
         };
-
-        // step 2 below
+        // ---------------------- END OF STEP 1 -- STEP 2 BELOW
 
         const codeValue = document.getElementById("code");
         const getAccessToken = document.getElementById("getToken");
@@ -87,6 +89,7 @@
                     accessTokenElement.innerText = JSON.stringify(json);
                 });
         };
+        // ---------------------- END OF STEP 2
     </script>
 
 </body>
