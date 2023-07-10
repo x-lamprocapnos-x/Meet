@@ -5,7 +5,6 @@ const calendar = google.calendar("v3");
 /* SCOPES allow you to set access levels */
 const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 
-
 /* Credentials are values required to get access to your calendar. If you see “process.env” this means the value is in the “config.json” file. */
 
 const credentials = {
@@ -47,6 +46,11 @@ module.exports.getAuthUrl = async () => {
 };
 
 module.exports.getAccessToken = async (event) => {
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
   // Decode authorization code extracted from the URL query
   const code = decodeURIComponent(`${event.pathParameters.code}`);
 
