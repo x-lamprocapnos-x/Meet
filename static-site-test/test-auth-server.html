@@ -42,7 +42,10 @@
         </label>
         <button id="getToken">Get Token</button>
         <p id="accessToken"></p>
-
+        <!-- STEP 3 Below-->
+        <h4>Step 3: Get the calendar events using your access token</h4>
+        <button id="getEvents">Get Events</button>
+        <p id="events"></p>
     </main>
 
     <script type="text/javascript">
@@ -52,7 +55,7 @@
         // ---------------------- step 1 below
         const getAuthUrl = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-        getAuthUrlButton.onclick = function() {
+        getAuthUrlButton.onclick = function () {
             fetch(getAuthUrl)
                 .then(function (response) {
                     return response.json();
@@ -89,7 +92,23 @@
                     accessTokenElement.innerText = JSON.stringify(json);
                 });
         };
-        // ---------------------- END OF STEP 2
+        // ---------------------- END OF STEP 2 -- STEP 3 BELOW
+        const getEvents = document.getElementById("getEvents");
+        const events = document.getElementById("events");
+        const getCalendarEvents = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events";
+
+        getEvents.onclick = function () {
+            const { access_token } = JSON.parse(accessTokenElement.innerText);
+            const eventRequest = getCalendarEvents + "/" + access_token;
+            fetch(eventRequest)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (json) {
+                    events.innerText = JSON.stringify(json, null, 2);
+                });
+        };
+      // -- END OF STEP 3
     </script>
 
 </body>
