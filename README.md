@@ -1,8 +1,12 @@
-Meet
+# **Meet**
 
-Meet is intended to find, compare, and stay up to date on upcoming events near you. Meet was built with React following a Test Driven Development technique (TDD). Meet utilized the Google Calendar Application Programming Interface (API)
+## Meet is intended to find, compare, and stay up to date on upcoming events near you. Meet was built with React following a Test Driven Development technique (TDD). Meet utilized the Google Calendar Application Programming Interface (API)
 
-Key Features (Will Include)
+# **Installation**
+
+# **Usage Guide**
+
+# **Features**
 - Filtered events by city
 - Show/hide event details
 - Event number selection
@@ -10,9 +14,9 @@ Key Features (Will Include)
 - Availabilty to add a shortcut to your home screen
 - Viewing a chart showing the number of upcoming events by city
 
-User Instructions (to be added)
+# **Screenshots or Demos**
+# **Configuration**
 
-Developer Instrctions(to be added)
+# **Documentation**
 
-(How I Plan to use Serverless Functions)
-- To authorize users
+# **Contributing**
