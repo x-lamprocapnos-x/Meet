@@ -1,7 +1,10 @@
-const Event = () => {
-    return (
-      <li></li>
-    );
-  }
+import React from 'react';
 
-  export default Event;
+const Event = ({event}) => {
+  return (
+    <li>
+    </li>
+  );
+};
+
+export default Event;
