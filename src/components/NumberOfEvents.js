@@ -1,12 +1,13 @@
 import React from 'react';
 
-const NumberOfEvents = ({events}) => {
+const NumberOfEvents = ({setCurrentNOE}) => {
     const handleInputChanged = (event) => {
         const value = event.target.value;
+        setCurrentNOE(value);
     }
 
     return( 
-    <div>
+    <div id="number-of-events">
         <input
         type='text'
         defaultValue='32'
