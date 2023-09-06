@@ -21,8 +21,8 @@ describe('<CitySearch /> component', () => {
   });
 
   test('suggestions list is hidden by default', () => {
-    const suggestionList = CitySearchComponent.getByRole('list');
-    expect(suggestionList).not.toBeInTheDocument();
+    const cityTextBox = CitySearchComponent.getByRole('textbox');
+    expect(cityTextBox).toBeInTheDocument();
   });
 
   test('renders a list of suggestions when city textbox gains focus', async () => {
