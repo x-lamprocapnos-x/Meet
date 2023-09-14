@@ -1,6 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;400;600&display=swap');;
+
+:root{
+  --primaryColor: #E2EdEb;
+  --secondaryColor: #ffffff;
+  --dropColor: #B8dbde;
+  --borderRadius10: 10px;
+  --fontFamily: 'MuseoModerno', cursive;
+  --fontWeight300: 300;
+  --fontWeight400: 400;
+  --fontWeight600: 600;
+  --fontSize14: 14px;
+  --centerAlign: center;
+  --pointer: pointer;
+}
+
+
+body{
+  background-color: var(--primaryColor);
+}
+
 .App {
-  text-align: center;
+  text-align: var(--centerAlign);
   padding: 2% 5%;
 }
 
@@ -13,19 +33,28 @@ ul {
   list-style: none;
 }
 
+h2{
+  font-family: var(--fontFamily);
+  font-weight: var(--fontWeight600);
+}
+
 p {
+  font-family: var(--fontFamily);
+  font-weight: var(--fontWeight400);
   margin: 5px 0;
 }
 
 input[type="text"],
 input[type="number"] {
   padding: 8px 6px 8px 10px;
-  border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  border-radius: var(--borderRadius10);
+  border: 1px solid var(--primaryColor);
+  font-family: var(--fontFamily);
+  font-weight: var(--fontWeight300);
+  font-size: var(--fontSize14);
   line-height: 20px;
-  align-self: center;
+  align-self: var(--centerAlign);
   height: 38px;
   margin-bottom: 20px;
 }
@@ -46,16 +75,16 @@ input[type="number"] {
   position: absolute;
   top: 45px;
   z-index: 2;
-  align-self: center;
+  align-self: var(--centerAlign);
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fontSize14);
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: var(--dropColor);
   cursor: default;
 }
 
@@ -65,15 +94,16 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: var(--dropColor);
 }
 
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: var(--secondaryColor);
+  border: 1px solid var(--primaryColor);
+  border-radius: var(--borderRadius10);
   position: relative;
 }
 
@@ -82,7 +112,8 @@ input[type="number"] {
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
-  border-radius: 4px;
+  border-radius: var(--borderRadius10);
+  background-color: var(--dropColor);
   outline: none;
-  cursor: pointer;
+  cursor: var(--pointer);
 }
