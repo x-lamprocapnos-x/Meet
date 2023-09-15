@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import mockData from './mock-data';
 
 /**
@@ -40,17 +41,6 @@ const removeQuery = () => {
   }
 };
 
-const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  const response = await fetch(
-    'https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/token' + '/' + encodeCode
-  );
-  const { access_token } = await response.json();
-  access_token && localStorage.setItem("access_token", access_token);
-
-  return access_token;
-};
-
 /**
  *
  * This function will fetch the list of all events
@@ -64,7 +54,7 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
+    const url = 'https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token; 
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
@@ -73,6 +63,14 @@ export const getEvents = async () => {
   }
 };
 
+const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code);
+  const response = await fetch('https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/token' + '/' + encodeCode);
+  const { access_token } = await response.json();
+  access_token && localStorage.setItem("access_token", access_token);
+
+  return access_token;
+};
 /**
  * 
  * this will return accessToken
@@ -88,7 +86,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const response = await fetch(
-        "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url"
+        `https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url`
       );
       const result = await response.json();
       const { authUrl } = result;
