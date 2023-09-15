@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
@@ -12,10 +13,6 @@ const App = () => {
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
 
-  useEffect(() => {
-    fetchData();
-  }, [currentCity, currentNOE]);
-
   const fetchData = async () => {
     const allEvents = await getEvents();
     const filteredEvents = currentCity === "See all cities" ?
@@ -25,7 +22,9 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   }
 
-
+  useEffect(() => {
+    fetchData();
+  }, [currentCity, currentNOE]);
 
   return (
     <div className="App">

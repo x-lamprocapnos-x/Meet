@@ -64,12 +64,12 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url =  "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
+    const url = "https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
       return result.events;
-    } else return null; 
+    } else return null;
   }
 };
 
