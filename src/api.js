@@ -25,22 +25,6 @@ const checkToken = async (accessToken) => {
   const result = await response.json();
   return result;
 };
-
-const removeQuery = () => {
-  let newurl;
-  if (window.history.pushState && window.location.pathname) {
-    newurl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
-
 /**
  *
  * This function will fetch the list of all events
@@ -54,12 +38,27 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url = 'https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token; 
+    const url = 'https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
       return result.events;
     } else return null;
+  }
+};
+
+const removeQuery = () => {
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
   }
 };
 
