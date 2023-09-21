@@ -39,6 +39,7 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
     const url = 'https://gn93tfqdyd.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token;
+    console.log(url)
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
