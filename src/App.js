@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CitySearch from './components/CitySearch';
+import CityEventsChart from './components/CityEventsChart';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import './App.css';
 import { useState, useEffect } from 'react';
 import { extractLocations, getEvents } from './api';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
-import './App.css';
+
 
 const App = () => {
   const [allLocations, setAllLocations] = useState([]);
@@ -15,26 +17,22 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState('See all cities');
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
-  const [ warningAlert, setWarningAlert ] = useState('');
+  const [warningAlert, setWarningAlert] = useState('');
 
   const fetchData = async () => {
     const allEvents = await getEvents();
-    const filteredEvents = currentCity === 'See all cities' ?
-      allEvents :
-      allEvents.filter(event => event.location === currentCity);
+    const filteredEvents = currentCity === 'See all cities'
+      ? allEvents
+      : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
   }
 
   useEffect(() => {
     if (navigator.onLine) {
-      this.setState({
-        warningText: ''
-      })
+      setWarningAlert('');
     } else {
-      this.setState({
-        warningText: 'You are offline, some events may not be up to date'
-      })
+      setWarningAlert('You are offline, some events may not be up to date')
     }
     fetchData();
   }, [currentCity, currentNOE]);
@@ -56,11 +54,15 @@ const App = () => {
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
         />
+        <div className='charts-container'>
+          <CityEventsChart allLocations={allLocations} events={events} />
+          
+        </div>
         <EventList events={events} />
       </div>
 
     </div>
   );
 }
-
+ 
 export default App;
