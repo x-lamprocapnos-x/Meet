@@ -4,12 +4,12 @@ const calendar = google.calendar("v3");
 /* SCOPES allow you to set access levels */
 const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 
-const { client_id, client_secret, calendar_id} = process.env;
+const { CLIENT_ID, CLIENT_SECRET, CALENDAR_ID} = process.env;
 const redirect_uris = ["https://x-lamprocapnos-x.github.io/meet/"];
 
 const oAuth2Client = new google.auth.OAuth2(
-  client_id,
-  client_secret,
+  CLIENT_ID,
+  CLIENT_SECRET,
   redirect_uris[0]
 );
 //getAuthUrl function
@@ -68,8 +68,8 @@ module.exports.getAccessToken = async (event) => {
 //getCalendarEvents function
 module.exports.getCalendarEvents = (event) => {
   const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
+    CLIENT_ID,
+    CLIENT_SECRET,
     redirect_uris[0]
   );
   // Decode authorization code extracted from the URL query
@@ -80,7 +80,7 @@ module.exports.getCalendarEvents = (event) => {
   return new Promise((resolve, reject) => {
       calendar.events.list(
         {
-          calendarId: calendar_id,
+          calendarId: CALENDAR_ID,
           auth: oAuth2Client,
           timeMin: new Date().toISOString(),
           singleEvents: true,
