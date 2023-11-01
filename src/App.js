@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CitySearch from './components/CitySearch';
 import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import './App.css';
@@ -21,6 +22,7 @@ const App = () => {
 
   const fetchData = async () => {
     const allEvents = await getEvents();
+    console.log(allEvents);
     const filteredEvents = currentCity === 'See all cities'
       ? allEvents
       : allEvents.filter((event) => event.location === currentCity);
@@ -56,6 +58,7 @@ const App = () => {
         />
         <div className='charts-container'>
           <CityEventsChart allLocations={allLocations} events={events} />
+          <EventGenresChart events={events} />
           
         </div>
         <EventList events={events} />

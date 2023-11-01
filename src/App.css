@@ -125,3 +125,26 @@ input[type="number"] {
   width: 250px;
   z-index: 1000;
 }
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px){
+  .charts-container{
+    grid-template-columns: 1fr;
+  }
+  .recharts-responsive-container:first-of-type{
+    margin-left: 5%;
+  }
+  #event-list{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px){
+  #event-list{
+    grid-template-columns: 1fr;
+  }
+}

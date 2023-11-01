@@ -9,7 +9,7 @@ import {
     ResponsiveContainer
 } from 'recharts';
 
-const CityEventsChart = (allLocations, events) => {
+const CityEventsChart = ({allLocations, events}) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const CityEventsChart = (allLocations, events) => {
                     allowDecimals={false}
                 />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Scatter name="A school" data={data} fill="#8884d8" />
+                <Scatter name="A school" data={data} fill="#4F6A6C" />
             </ScatterChart>
         </ResponsiveContainer>
     );
