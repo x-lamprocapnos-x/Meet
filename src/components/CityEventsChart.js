@@ -9,24 +9,25 @@ import {
     ResponsiveContainer
 } from 'recharts';
 
-const CityEventsChart = ({allLocations, events}) => {
+const CityEventsChart = ({ allLocations, events }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        const getData = () => {
+            const data = allLocations.map((location) => {
+                const count = events.filter(
+                    (event) => event.location === location).length;
+
+                const city = location.split(/, | - /)[0]
+                return { city, count };
+            })
+            return data;
+
+        };
         setData(getData());
-    }, [`${events}`]);
+    }, [events, allLocations]);
 
-    const getData = () => {
-        const data = allLocations.map((location) => {
-            const count = events.filter(
-                (event) => event.location === location).length;
 
-            const city = location.split(/, | - /)[0]
-            return { city, count };
-        })
-        return data;
-        
-    };
     console.log(allLocations);
     return (
         <ResponsiveContainer width="99%" height={400}>

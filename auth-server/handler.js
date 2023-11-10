@@ -4,7 +4,7 @@ const calendar = google.calendar("v3");
 /* SCOPES allow you to set access levels */
 const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 
-const { CLIENT_ID, CLIENT_SECRET, CALENDAR_ID} = process.env;
+const { CLIENT_ID, CLIENT_SECRET, CALENDAR_ID } = process.env;
 const redirect_uris = ["https://x-lamprocapnos-x.github.io/meet/"];
 
 const oAuth2Client = new google.auth.OAuth2(
@@ -15,7 +15,7 @@ const oAuth2Client = new google.auth.OAuth2(
 //getAuthUrl function
 module.exports.getAuthUrl = async () => {
 
-    const authUrl = oAuth2Client.generateAuthUrl({
+  const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
   });
@@ -74,43 +74,43 @@ module.exports.getCalendarEvents = (event) => {
   );
   // Decode authorization code extracted from the URL query
   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
-  
+
   oAuth2Client.setCredentials({ access_token });
 
   return new Promise((resolve, reject) => {
-      calendar.events.list(
-        {
-          calendarId: CALENDAR_ID,
-          auth: oAuth2Client,
-          timeMin: new Date().toISOString(),
-          singleEvents: true,
-          orderBy: "startTime",
-        },
-        (error, response) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(response);
-          }
+    calendar.events.list(
+      {
+        calendarId: CALENDAR_ID,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
         }
-      );
-    })
+      }
+    );
+  })
     .then((results) => {
-      return{
+      return {
         statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ events: results.data.items })
-    };
-  }).catch ((error) => {
-    return {
-      statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(error),
-    };
-  });
-   
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ events: results.data.items })
+      };
+    }).catch((error) => {
+      return {
+        statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(error),
+      };
+    });
+
 };
