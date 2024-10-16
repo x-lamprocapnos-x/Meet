@@ -2,7 +2,7 @@
 
 ### Meet is a progressive web application (PWA) intended to find, compare, and stay up to date on upcoming events near you. Meet was built with React following a Test Driven Development technique (TDD). Meet utilized the Google Calendar Application Programming Interface (API)
 
-## **Table of Contents
+## **Table of Contents**
 - Installation
 - Technologies Used
 - Configuration
